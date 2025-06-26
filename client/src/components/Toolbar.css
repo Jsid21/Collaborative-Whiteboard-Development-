@@ -1,0 +1,231 @@
+.toolbar {
+  background: rgba(20, 20, 20, 0.98);
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.25);
+  padding: 10px 10px 8px 10px;
+  min-width: 140px;
+  max-width: 210px;
+  margin: 0;
+  border: 1.5px solid #222;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  color: #fff;
+  font-size: 0.95rem;
+  position: fixed;
+  top: 50%;
+  left: 36px;
+  transform: translateY(-50%);
+  z-index: 1000;
+  user-select: none;
+  cursor: grab;
+  transition: box-shadow 0.2s, background 0.2s;
+}
+
+.toolbar.dragging {
+  opacity: 0.85;
+  cursor: grabbing;
+}
+
+.toolbar-section {
+  margin-bottom: 6px;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 600;
+  font-size: 0.98rem;
+  color: #fff;
+  margin-bottom: 6px;
+  letter-spacing: 0.01em;
+}
+
+.color-palette {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 2px;
+}
+
+.color-button {
+  border: 2px solid transparent;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: border 0.2s, transform 0.15s;
+  position: relative;
+  outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.color-button.active {
+  border: 2.5px solid #fff;
+  box-shadow: 0 0 0 2px #333;
+  transform: scale(1.12);
+}
+
+.color-button:hover:not(.active) {
+  border: 2px solid #888;
+  transform: scale(1.08);
+}
+
+.eraser-btn {
+  background: #fff !important;
+  border: 2px dashed #888 !important;
+}
+
+.eraser-btn.active {
+  border: 2.5px solid #fff !important;
+  box-shadow: 0 0 0 2px #333;
+}
+
+.color-check {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  font-size: 1rem;
+  color: #111;
+  background: #fff;
+  border-radius: 50%;
+  width: 14px;
+  height: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+.width-controls {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 2px;
+}
+
+.width-btn {
+  background: #222;
+  border: none;
+  border-radius: 4px;
+  padding: 2px 5px;
+  cursor: pointer;
+  transition: background 0.18s, transform 0.15s;
+  color: #fff;
+  font-size: 0.95rem;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.08);
+}
+
+.width-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.width-btn:hover:not(:disabled) {
+  background: #444;
+  transform: scale(1.08);
+}
+
+.width-display {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.width-preview {
+  border-radius: 50%;
+  margin-right: 2px;
+  border: 1px solid #444;
+  background-clip: padding-box;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.10);
+}
+
+.width-value {
+  font-size: 0.92rem;
+  color: #bbb;
+  font-weight: 500;
+}
+
+.width-slider-container {
+  margin-top: 1px;
+}
+
+.width-slider {
+  width: 100%;
+  accent-color: #fff;
+  height: 2px;
+  border-radius: 2px;
+  background: #333;
+}
+
+.clear-btn {
+  background: linear-gradient(90deg, #222 60%, #444 100%);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 4px 10px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.12);
+  transition: background 0.18s, transform 0.15s;
+}
+
+.clear-btn:hover {
+  background: linear-gradient(90deg, #444 0%, #222 100%);
+  transform: translateY(-1px) scale(1.04);
+}
+
+.toolbar-toggle {
+  background: #111;
+  border: none;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 1rem;
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.10);
+  cursor: pointer;
+  z-index: 2;
+  transition: background 0.18s, transform 0.15s;
+}
+
+.toolbar-toggle:hover {
+  background: #333;
+  transform: translateX(-50%) scale(1.08);
+}
+
+.toolbar.expanded {
+  box-shadow: 0 8px 32px rgba(0,0,0,0.18), 0 2px 8px rgba(0,0,0,0.13);
+}
+
+@media (max-width: 600px) {
+  .toolbar {
+    min-width: 80px;
+    padding: 8px 4px 4px 4px;
+    font-size: 0.85rem;
+    left: 10px;
+    top: 10px;
+  }
+  .section-header {
+    font-size: 0.92rem;
+  }
+  .clear-btn {
+    font-size: 0.9rem;
+    padding: 3px 6px;
+  }
+}
